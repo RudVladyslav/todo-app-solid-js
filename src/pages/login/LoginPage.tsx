@@ -4,6 +4,9 @@ import { BiRegularLoaderCircle } from "solid-icons/bi";
 import { getUserByEmail } from "~/api/users/service";
 import Input from "~/ui/input";
 import Button from "~/ui/button";
+import { A, redirect } from "@solidjs/router";
+import { ROUTES } from "~/consts/routes";
+import { LS_USER_ID } from "~/consts/app";
 
 const LoginPage = () => {
   const [email, setEmail] = createSignal("");
@@ -14,8 +17,12 @@ const LoginPage = () => {
     e.preventDefault();
     setLoading(true);
     const res = await getUserByEmail(email());
+    
     if (!res) {
-      setError("User not found");
+      setError("Something went wrong");
+    } else {
+      localStorage.setItem(LS_USER_ID, res.id.toString());
+      redirect(ROUTES.HOME);
     }
     setLoading(false);
   };
@@ -27,6 +34,15 @@ const LoginPage = () => {
           <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
             Sign in to your account
           </h2>
+          <p class="mt-2 text-center text-gray-600">
+            Or{" "}
+            <A
+              href={ROUTES.REGISTER}
+              class="font-medium text-indigo-600 hover:text-indigo-500"
+            >
+              create a new account
+            </A>
+          </p>
         </div>
 
         <form class="mt-8 space-y-6" onSubmit={handleSubmit}>
@@ -40,9 +56,7 @@ const LoginPage = () => {
               type="email"
               value={email()}
             />
-            {error() && (
-              <div class="text-red-500 text-sm">{error()}</div>
-            )}
+            {error() && <div class="text-red-500 text-sm">{error()}</div>}
           </div>
 
           <div>

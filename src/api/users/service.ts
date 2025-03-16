@@ -19,3 +19,19 @@ export const getUserByEmail = async (email: string): Promise<User | null> => {
     return null;
   }
 };
+
+
+/**
+ * Add a new user to the JSON server
+ * @param user - User data to be added { name, email }
+ * @returns The newly created user
+ */
+export const createUser = async (user: Omit<User, 'id'>): Promise<User | null> => {
+  try {
+    const response = await api.post<User>("/users", user);
+    return response.data; // Return the created user
+  } catch (error) {
+    console.error("Error creating user:", error);
+    return null;
+  }
+};

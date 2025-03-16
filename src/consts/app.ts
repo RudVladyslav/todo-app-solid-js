@@ -1,1 +1,1 @@
-export const AUTH_EMAIL = 'auth/email';
+export const LS_USER_ID = 'auth/userId';
