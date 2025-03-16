@@ -1,7 +1,8 @@
 {
   "users": [
     { "id": 1, "name": "Alice", "email": "alice@example.com" },
-    { "id": 2, "name": "Bob", "email": "bob@example.com" }
+    { "id": 2, "name": "Bob", "email": "bob@example.com" },
+    { "id": 3, "name": "Charlie", "email": "asd@s.com" }
   ],
   "todos": [
     { "id": 1, "userId": 1, "task": "Buy groceries", "completed": false },
