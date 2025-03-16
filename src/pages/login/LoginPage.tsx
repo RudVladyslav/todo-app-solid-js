@@ -4,7 +4,7 @@ import { BiRegularLoaderCircle } from "solid-icons/bi";
 import { getUserByEmail } from "~/api/users/service";
 import Input from "~/ui/input";
 import Button from "~/ui/button";
-import { A, redirect } from "@solidjs/router";
+import { A, redirect, useNavigate } from "@solidjs/router";
 import { ROUTES } from "~/consts/routes";
 import { LS_USER_ID } from "~/consts/app";
 
@@ -12,6 +12,7 @@ const LoginPage = () => {
   const [email, setEmail] = createSignal("");
   const [loading, setLoading] = createSignal(false);
   const [error, setError] = createSignal("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: SubmitEvent) => {
     e.preventDefault();
@@ -22,7 +23,7 @@ const LoginPage = () => {
       setError("Something went wrong");
     } else {
       localStorage.setItem(LS_USER_ID, res.id.toString());
-      redirect(ROUTES.HOME);
+      navigate(ROUTES.HOME);
     }
     setLoading(false);
   };

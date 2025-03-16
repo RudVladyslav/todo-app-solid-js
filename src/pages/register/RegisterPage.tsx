@@ -1,4 +1,4 @@
-import { A, redirect } from "@solidjs/router";
+import { A, redirect, useNavigate } from "@solidjs/router";
 import { BiRegularLoaderCircle } from "solid-icons/bi";
 import { FaSolidUnlock } from "solid-icons/fa";
 import { createSignal } from "solid-js";
@@ -13,6 +13,7 @@ const RegisterPage = () => {
   const [name, setName] = createSignal("");
   const [loading, setLoading] = createSignal(false);
   const [error, setError] = createSignal("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: SubmitEvent) => {
     e.preventDefault();
@@ -26,7 +27,7 @@ const RegisterPage = () => {
       setError("User not found");
     } else {
       localStorage.setItem(LS_USER_ID, res.id.toString());
-      redirect(ROUTES.HOME);
+      navigate(ROUTES.HOME);
     }
     setLoading(false);
   };
