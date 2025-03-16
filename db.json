@@ -1,0 +1,11 @@
+{
+  "users": [
+    { "id": 1, "name": "Alice", "email": "alice@example.com" },
+    { "id": 2, "name": "Bob", "email": "bob@example.com" }
+  ],
+  "todos": [
+    { "id": 1, "userId": 1, "task": "Buy groceries", "completed": false },
+    { "id": 2, "userId": 1, "task": "Read a book", "completed": true },
+    { "id": 3, "userId": 2, "task": "Write code", "completed": false }
+  ]
+}

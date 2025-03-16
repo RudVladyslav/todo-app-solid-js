@@ -1,0 +1,1 @@
+export const AUTH_EMAIL = 'auth/email';
